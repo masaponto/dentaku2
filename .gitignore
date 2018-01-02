@@ -1,0 +1,7 @@
+.idea
+.python-version
+*/__pycache__
+mnist/MNIST_data/*
+node_modules
+package-lock.json
+!.gitkeep
