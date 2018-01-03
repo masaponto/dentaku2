@@ -1,5 +1,13 @@
-import * as parser from "./parser";
 import './index.html';
+import { Parser } from "./parser";
+import Vue from "vue";
 
-const p: parser.Parser = new parser.Parser("34+24");
-console.log(p.expr());
+const vm: Vue = new Vue({
+    el: '#app',
+    data: { input_text: "" },
+    computed: {
+        output: function(): string {
+            return new Parser(this.input_text).expr().toString();
+        }
+    }
+});
