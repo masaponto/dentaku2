@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<script defer src="bundle.js"></script>
+		<script defer src="{{ url_for('static', filename='bundle.js') }}"></script>
 	</head>
 	<body>
 		<div id ="app">
 			<input v-model="input_text" placeholder="expression">
-			<p>output: {{output}}</p>
+			<p>output: {{"{{output}}"}}</p>
 		</div>
 	</body>
 </html>
