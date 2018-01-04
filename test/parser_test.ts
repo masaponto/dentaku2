@@ -3,10 +3,6 @@ import * as assert from "assert";
 
 describe("parser", function() {
 
-    it("test example", function() {
-        assert(parser.echo("hoge") === "hoge");
-    });
-
     it("test num", function() {
         const p: parser.Parser = new parser.Parser("7");
         assert(p.num() === 7);

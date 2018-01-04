@@ -1,11 +1,6 @@
-export const echo = (message: string): string => {
-    return message;
-};
-
 const isDigit = (ch: string): boolean => {
     return ch.charCodeAt(0) >= 48 && ch.charCodeAt(0) <= 57;
 }
-
 
 class Source {
     private pos: number = 0;
@@ -22,7 +17,7 @@ class Source {
         return -1;
     }
 
-    public next = (): void => {
+    public next = () => {
         ++this.pos;
     }
 
@@ -101,7 +96,7 @@ export class Parser extends Source {
         return ret;
     }
 
-    public spaces = (): void => {
+    public spaces = () => {
         while (this.peek() == ' '.charCodeAt(0)) {
             this.next();
         }
