@@ -28,6 +28,11 @@ module.exports = {
                 options: {
                     name:'[name].[ext]'
                 }
+            },
+
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
             }
         ]
     },
@@ -46,7 +51,9 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         },
         extensions: [
-            '.ts'
+            '.ts',
+            '.vue',
+            '.js'
         ]
     },
 

@@ -19,6 +19,8 @@
         "power-assert": "^1.4.4",
         "source-map-loader": "^0.2.3",
         "typescript": "^2.6.2",
+        "vue-loader": "^13.6.2",
+        "vue-template-compiler": "^2.5.13",
         "webpack": "^3.10.0"
     },
     "dependencies": {

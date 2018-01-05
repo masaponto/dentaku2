@@ -1,25 +1,32 @@
 import './index.html';
-import { Parser } from "./parser";
-import { Canvas } from "./canvas";
 import Vue from "vue";
+import ParserComponent from "./parser-component.vue";
+import DrawCanvas from "./canvas-component.vue";
 
 const vm: Vue = new Vue({
     el: '#app',
-    data: { input_text: "" },
-    computed: {
-        output: function(): string {
-            return new Parser(this.input_text).expr().toString();
-        }
+    components: {
+        'parser': ParserComponent,
+        'draw-canvas': DrawCanvas
     }
 });
 
-const canvas = new Canvas();
 
-const clearButton: Vue = new Vue({
-    el: '#clear',
-    methods: {
-        clear: function(event: MouseEvent): void {
-            canvas.initialize();
-        }
-    }
-});
+//const canvas = new Canvas();
+// const canvasModel: Vue = new Vue(
+//     el: '#canvas',
+//     methods: {
+//         onMoucedown: function(event: MouseEvent): void {
+//             canvas.
+//         }
+//     }
+// );
+
+// const clearButton: Vue = new Vue({
+//     el: '#clear',
+//     methods: {
+//         clear: function(event: MouseEvent): void {
+//             canvas.initialize();
+//         }
+//     }
+// });
