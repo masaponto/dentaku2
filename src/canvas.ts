@@ -56,10 +56,10 @@ export class Canvas {
 
     private onMouseUp = () => {
         this.drawing = false;
-        this.drawInput();
+        //this.drawInput();
     }
 
-    private drawInput = () => {
+    // private drawInput = () => {
 
-    }
+    // }
 }

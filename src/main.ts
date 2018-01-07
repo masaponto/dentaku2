@@ -1,13 +1,13 @@
 import './index.html';
 import Vue from "vue";
 import ParserComponent from "./parser-component.vue";
-import DrawCanvas from "./canvas-component.vue";
+import CanvasComponent from "./canvas-component.vue";
 
 const vm: Vue = new Vue({
     el: '#app',
     components: {
         'parser': ParserComponent,
-        'draw-canvas': DrawCanvas
+        'dcanvas': CanvasComponent
     }
 });
 
