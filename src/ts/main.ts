@@ -1,7 +1,7 @@
-import './index.html';
+import '../index.html';
 import Vue from "vue";
-import ParserComponent from "./parser-component.vue";
-import CanvasComponent from "./canvas-component.vue";
+import ParserComponent from "../component/parser-component.vue";
+import CanvasComponent from "../component/canvas-component.vue";
 
 const vm: Vue = new Vue({
     el: '#app',

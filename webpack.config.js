@@ -2,7 +2,7 @@ const webpack = require("webpack");
 
 module.exports = {
 
-    entry: './src/main.ts',
+    entry: './src/ts/main.ts',
 
     output: {
         path: `${__dirname}/build`,
@@ -14,6 +14,10 @@ module.exports = {
             {
                 test: /\.ts$/,
                 use: 'awesome-typescript-loader'
+                //,
+                // options: {
+                //     appendTsSuffixTo: [/\.vue$/],
+                // }
             },
 
             {

@@ -1,4 +1,4 @@
-import * as parser from "../src/parser";
+import * as parser from "../src/ts/parser";
 import * as assert from "assert";
 
 describe("parser", function() {

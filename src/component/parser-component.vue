@@ -7,7 +7,7 @@
 </template>
 
 <script>
- import { Parser } from "./parser";
+ import { Parser } from "../ts/parser";
 
  export default {
      data: function() {
