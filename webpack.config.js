@@ -13,11 +13,10 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'awesome-typescript-loader'
-                //,
-                // options: {
-                //     appendTsSuffixTo: [/\.vue$/],
-                // }
+                loader: 'ts-loader',
+                options: {
+                     appendTsSuffixTo: [/\.vue$/],
+                }
             },
 
             {

@@ -10,23 +10,3 @@ const vm: Vue = new Vue({
         'dcanvas': CanvasComponent
     }
 });
-
-
-//const canvas = new Canvas();
-// const canvasModel: Vue = new Vue(
-//     el: '#canvas',
-//     methods: {
-//         onMoucedown: function(event: MouseEvent): void {
-//             canvas.
-//         }
-//     }
-// );
-
-// const clearButton: Vue = new Vue({
-//     el: '#clear',
-//     methods: {
-//         clear: function(event: MouseEvent): void {
-//             canvas.initialize();
-//         }
-//     }
-// });
