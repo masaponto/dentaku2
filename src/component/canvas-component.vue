@@ -87,14 +87,6 @@
 	 private estimate() {
 		 const inputs: number[] = this.getImageBuffer(28, 28);
 
-		 /* try {
-			let res = await axios.post(this.ENDPOINT, {input: inputs});
-			this.y_conv = res.data.estimated;
-			console.log(this.y_conv);
-			} catch(error) {
-			console.error(error);
-			}*/
-
 		 axios.post(this.ENDPOINT, {input: inputs})
 			  .then((response) => {
 				  console.log(typeof response.data.estimated);
@@ -106,8 +98,6 @@
 			  .catch((error) => {
 				  console.log(error);
 			  });
-
-		 console.log(inputs);
 	 }
 
 	 private getImageBuffer(width: number, height: number): number[] {
@@ -118,9 +108,6 @@
 		 tmpCtx.drawImage(this.ctx.canvas, 0, 0, width, height);
 
 		 let img: ImageData = tmpCtx.getImageData(0, 0, width, height);
-
-		 console.log(img.data.length);
-		 console.log(img.data);
 
 		 let inputs: number[] = [];
 		 for (let i = 0; i < img.data.length; i += 4 ) {
