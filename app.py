@@ -31,8 +31,10 @@ def index():
 @app.route('/estimate', methods=["POST"])
 def estimate():
     try:
-        input_x = (np.array(request.json["input"],
-                            dtype=np.uint8) / 255.0).reshape(1, 784)
+
+        input_x = ((255 - np.array(request.json["input"],
+                                   dtype=np.uint8)) / 255.0).reshape(1, 784)
+        print(input_x)
         output = cnn(input_x)
         return jsonify({"estimated": output})
 

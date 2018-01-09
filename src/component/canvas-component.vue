@@ -2,9 +2,10 @@
     <div>
 		<p>This is ?: {{y_conv}}</p>
 		<canvas ref="canvas"
-					 @mousedown="onMouseDown"
-					 @mouseup="onMouseUp"
-					 @mousemove="onMouseMove" >
+				@mousedown="onMouseDown" @touchstart="onMouseDown"
+				@mousemove="onMouseMove" @touchmove="onMouseMove"
+				@mouseup="onMouseUp" @touchend="onMouseUp" @mouseleave="onMouseUp"
+		>
 		</canvas>
 		<button @click="clear">
 			Clear
@@ -89,14 +90,10 @@
 
 		 axios.post(this.ENDPOINT, {input: inputs})
 			  .then((response) => {
-				  console.log(typeof response.data.estimated);
-
 				  this.y_conv = response.data.estimated;
-
-				  console.log(this.y_conv);
 			  })
 			  .catch((error) => {
-				  console.log(error);
+				  console.error(error);
 			  });
 	 }
 
@@ -111,7 +108,7 @@
 
 		 let inputs: number[] = [];
 		 for (let i = 0; i < img.data.length; i += 4 ) {
-			 let sum = img.data[i+0] + img.data[i+1] + img.data[i+2] + img.data[i+3];
+			 let sum = (img.data[i+0] + img.data[i+1] + img.data[i+2])/3;
 			 inputs.push(Math.min(sum, 255));
 		 }
 
