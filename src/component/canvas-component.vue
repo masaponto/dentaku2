@@ -1,18 +1,22 @@
 <template>
     <div>
-		<p>This is ?: {{y_conv}}</p>
-		<canvas ref="canvas"
-				@mousedown="onMouseDown" @touchstart="onMouseDown"
-				@mousemove="onMouseMove" @touchmove="onMouseMove"
-				@mouseup="onMouseUp" @touchend="onMouseUp" @mouseleave="onMouseUp"
-		>
-		</canvas>
-		<button @click="clear">
-			Clear
-		</button>
-		<button @click="accept">
-			Accept
-		</button>
+		<div>
+			<p>This is ?: {{y_conv}}</p>
+			<canvas ref="canvas"
+					@mousedown="onMouseDown" @touchstart="onMouseDown"
+					@mousemove="onMouseMove" @touchmove="onMouseMove"
+					@mouseup="onMouseUp" @touchend="onMouseUp" @mouseleave="onMouseUp"
+			>
+			</canvas>
+		</div>
+		<div>
+			<button @click="accept">
+				Accept
+			</button>
+			<button @click="clear">
+				Clear
+			</button>
+		</div>
     </div>
 </template>
 
@@ -120,8 +124,15 @@
 	 }
 
 	 accept(): void {
+		 this.initialize();
 		 bus.$emit('y_conv', this.y_conv);
 	 }
 
  }
 </script>
+
+<style scoped>
+ div {
+	 text-align: center;
+ }
+</style>
