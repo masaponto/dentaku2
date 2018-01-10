@@ -10,6 +10,9 @@
 		<button @click="clear">
 			Clear
 		</button>
+		<button @click="accept">
+			Accept
+		</button>
     </div>
 </template>
 
@@ -17,6 +20,7 @@
  import Vue from 'vue';
  import Component from 'vue-class-component';
  import axios from 'axios';
+ import {bus} from '../ts/main.ts';
 
  @Component
  export default class CanvasComponent extends Vue {
@@ -114,5 +118,10 @@
 
 		 return inputs;
 	 }
+
+	 accept(): void {
+		 bus.$emit('y_conv', this.y_conv);
+	 }
+
  }
 </script>
