@@ -1,6 +1,15 @@
 # dentaku2
 
+Vue.js + Typescript, and Tensorflow + Flask + Python
+
 ## How to use
+
+### Install
+
+```
+$ npm install
+$ pip install -r requirements.txt
+```
 
 ### Build
 
@@ -14,7 +23,7 @@ $ npm run build
 $ npm run test
 ```
 
-### Server up
+### Build & Server up
 
 ```
 $ npm run up
