@@ -6,7 +6,7 @@
     "scripts": {
         "build": "webpack",
         "test": "mocha",
-        "up": "webpack && python app.py"
+        "up": "webpack && gunicorn app:app --log-file=-"
     },
     "author": "masaponto",
     "license": "MIT",
