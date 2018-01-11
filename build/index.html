@@ -5,13 +5,10 @@
 		<script defer src="{{ url_for('static', filename='bundle.js') }}"></script>
 	</head>
 	<body>
-		<div id ="app">
-			<input v-model="input_text" placeholder="expression">
-			<p>output: {{"{{output}}"}}</p>
-		</div>
-		<canvas id="draw_canvas"></canvas>
-		<div id="clear">
-			<button v-on:click="clear">Clear</button>
+		<h2 align="center">Dentaku2</h2>
+		<div id="app">
+			<parser></parser>
+			<dcanvas></dcanvas>
 		</div>
 	</body>
 </html>
