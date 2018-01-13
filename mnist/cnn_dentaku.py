@@ -3,16 +3,28 @@
 from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf
 import model
+import dentaku_data
 
 def main():
     mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+
+    operator_symbols = ['plus', 'minus', 'mult', 'div']
+    paths = [f'/operator_data/{op}_data.csv' for op in operator_symbols]
+
+    train_images, train_labels = dentaku_data.expand_mnist(mnist.train.images, mnist.train.labels, paths)
+    mnist.train._images = train_images
+    mnist.train._labels = train_labels
+
+    test_images, test_labels = dentaku_data.expand_mnist(mnist.test.images, mnist.test.labels, paths)
+    mnist.test._images = test_images
+    mnist.test._labels = test_labels
 
     with tf.variable_scope("convolutional"):
         x = tf.placeholder(tf.float32, shape=[None, 784])
         keep_prob = tf.placeholder("float")
         y_conv, variables = model.convolutional(x, keep_prob)
 
-    y_ = tf.placeholder(tf.float32, shape=[None, 10])
+    y_ = tf.placeholder(tf.float32, shape=[None, 14])
     cross_entropy = tf.reduce_mean(
         tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv))
     train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
@@ -35,7 +47,7 @@ def main():
         print('test accuracy %g' % accuracy.eval(feed_dict={
             x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 
-        save_path = saver.save(sess, "model/cnn_mnist.ckpt")
+        save_path = saver.save(sess, "model/cnn_dentaku.ckpt")
         print("Model saved in file: %s" % save_path)
 
 
