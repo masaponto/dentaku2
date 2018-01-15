@@ -1,7 +1,7 @@
 import '../index.html';
 import Vue from "vue";
 import ParserComponent from "../component/parser-component.vue";
-import CanvasComponent from "../component/canvas-component.vue";
+import CanvasComponent from "../component/input-canvas.vue";
 
 export const bus: Vue = new Vue();
 
