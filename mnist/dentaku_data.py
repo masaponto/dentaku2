@@ -13,8 +13,7 @@ def load_csv_data(file_path):
     """
     dir_name = os.path.dirname(os.path.abspath(os.path.abspath(__file__)))
     path = dir_name + file_path
-    data = np.loadtxt(path, dtype=np.int, delimiter=',')
-    data = data.astype(np.float32)
+    data = np.loadtxt(path, dtype=np.float32, delimiter=',')
     data = data / 255
     return data
 
