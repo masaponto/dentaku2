@@ -16,7 +16,11 @@
 			<button @click="clear">
 				Clear
 			</button>
+			<button>
+				Feature
+			</button>
 		</div>
+		<feature></feature>
     </div>
 </template>
 
@@ -26,9 +30,11 @@
  import axios from 'axios';
  import {bus} from '../ts/main.ts';
  import {CanvasMixin} from './canvas-mixin.ts';
+ import FeatureAreaComponent from "./feature-area.vue";
 
  @Component({
-	 mixins: [CanvasMixin]
+	 mixins: [CanvasMixin],
+	 components: {'feature': FeatureAreaComponent}
  })
  export default class CanvasComponent extends Vue implements CanvasMixin {
 
