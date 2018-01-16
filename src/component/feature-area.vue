@@ -1,11 +1,14 @@
 <template>
 	<div>
 		<div>
-			<textarea ref="feature" type="text">hogehoge</textarea>
+			<textarea type="text" v-model="feature" readonly="readonly"></textarea>
 		</div>
 		<div>
-			<button>
+			<button @click="download">
 				Download
+			</button>
+			<button @click="clear">
+				Clear
 			</button>
 		</div>
 	</div>
@@ -13,11 +16,33 @@
 
 <script lang="ts">
  import Vue from 'vue';
+ import axios from 'axios';
  import Component from 'vue-class-component';
+ import {bus} from '../ts/main.ts';
 
  @Component
  export default class featuerAreaComponent extends Vue {
+	 feature: string = "";
 
+	 mounted() {
+		 bus.$on('feature', (tmp: string) => {
+			 this.feature += tmp;
+			 this.feature += '\n';
+		 });
+	 }
+
+	 private download() {
+		 let file = new Blob([this.feature], {type: 'text/plain'});
+		 let element = document.createElement("a");
+		 element.href = URL.createObjectURL(file);
+		 element.download = "data.csv";
+		 element.click();
+		 console.log("download");
+	 }
+
+	 private clear() {
+		 this.feature = "";
+	 }
  }
 </script>
 

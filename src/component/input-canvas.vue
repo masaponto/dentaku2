@@ -16,11 +16,10 @@
 			<button @click="clear">
 				Clear
 			</button>
-			<button>
+			<button @click="generateFeature">
 				Feature
 			</button>
 		</div>
-		<feature></feature>
     </div>
 </template>
 
@@ -30,16 +29,15 @@
  import axios from 'axios';
  import {bus} from '../ts/main.ts';
  import {CanvasMixin} from './canvas-mixin.ts';
- import FeatureAreaComponent from "./feature-area.vue";
 
  @Component({
 	 mixins: [CanvasMixin],
-	 components: {'feature': FeatureAreaComponent}
+
  })
  export default class CanvasComponent extends Vue implements CanvasMixin {
 
-	 private ENDPOINT = '/estimate';
 	 private y_conv = null;
+	 private feature_csv: string = null;
 
 	 canvas;
 	 ctx: CanvasRenderingContext2D;
@@ -64,7 +62,7 @@
 	 private estimate() {
 		 const inputs: number[] = this.getImageBuffer(28, 28);
 
-		 axios.post(this.ENDPOINT, {input: inputs})
+		 axios.post('/estimate', {input: inputs})
 			  .then((response) => {
 				  this.y_conv = response.data.estimated;
 			  })
@@ -76,6 +74,21 @@
 	 accept(): void {
 		 this.initialize();
 		 bus.$emit('y_conv', this.y_conv);
+	 }
+
+	 generateFeature(): void {
+		 this.feature_csv = '';
+		 const inputs: number[] = this.getImageBuffer(28, 28);
+
+		 axios.post('/csv', {input: inputs})
+			  .then((response) => {
+				  this.feature_csv = response.data.feature;
+				  bus.$emit('feature', this.feature_csv);
+				  this.initialize();
+			  })
+			  .catch((error) => {
+				  console.error(error);
+			  });
 	 }
 
  }
