@@ -33,10 +33,15 @@ class TestDentakuData:
     def test_append_labes(self):
         labels = self.mnist.train.labels
         appended_labels = dentaku_data.append_labels(labels, [20, 20, 20, 20])
-
         eq_(appended_labels.shape, (55080, 14))
+        eq_(appended_labels[55001].tolist(), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
 
     def test_generate_label_matrix(self):
         label_matrix = dentaku_data.generate_new_label_matrix(3, 3, 2)
 
         eq_(label_matrix.tolist(), [[0, 0, 1], [0, 0, 1], [0, 0, 1]])
+
+        label_matrix = dentaku_data.generate_new_label_matrix(3, 4, 2)
+
+        eq_(label_matrix.tolist(), [[0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0]])
+
