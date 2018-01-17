@@ -16,13 +16,13 @@ class TestDentakuData:
     mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 
     def test_load_csv_data(self):
-        eq_(self.plus.shape, (20, 784))
+        eq_(self.plus.shape, (30, 784))
 
     def test_append_data(self):
         images = self.mnist.train.images
         image_ops = dentaku_data.append_data(images, self.plus)
 
-        eq_(image_ops.shape, (55020, 784))
+        eq_(image_ops.shape, (55030, 784))
 
     def test_fix_labels(self):
         labels = self.mnist.train.labels
