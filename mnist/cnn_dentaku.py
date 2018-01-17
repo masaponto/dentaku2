@@ -5,6 +5,7 @@ import tensorflow as tf
 import model
 import dentaku_data
 
+
 def main():
     mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 
@@ -14,10 +15,12 @@ def main():
     train_images, train_labels = dentaku_data.expand_mnist(mnist.train.images, mnist.train.labels, paths)
     mnist.train._images = train_images
     mnist.train._labels = train_labels
+    mnist.train._num_examples = train_images.shape[0]
 
     test_images, test_labels = dentaku_data.expand_mnist(mnist.test.images, mnist.test.labels, paths)
     mnist.test._images = test_images
     mnist.test._labels = test_labels
+    mnist.test._num_examples = test_images.shape[0]
 
     with tf.variable_scope("convolutional"):
         x = tf.placeholder(tf.float32, shape=[None, 784])

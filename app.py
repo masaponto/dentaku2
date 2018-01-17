@@ -16,6 +16,15 @@ with tf.variable_scope("convolutional"):
 saver = tf.train.Saver(variables)
 saver.restore(sess, "mnist/model/cnn_dentaku.ckpt")
 
+operators = {10: '+', 11: '-', 12: '*', 13: '/'}
+
+
+def fix_output(output):
+    if output in operators:
+        return operators[output]
+    else:
+        return output
+
 
 def cnn(input_x):
     y = sess.run(y_conv2, feed_dict={
@@ -35,7 +44,7 @@ def estimate():
             (255 - np.array(request.json["input"])) / 255.0).reshape(1, 784)
 
         output = cnn(input_x)
-        return jsonify({"estimated": output})
+        return jsonify({"estimated": fix_output(output)})
 
     except Exception as e:
         print(e)
@@ -45,8 +54,10 @@ def estimate():
 @app.route('/csv', methods=["POST"])
 def feature_to_csv():
     try:
-        input_x = (
-            (255 - np.array(request.json["input"])) / 255.0).reshape(1, 784)
+        input_x = (255 - np.array(request.json["input"])).reshape(1, 784)
+
+        print(np.array(request.json["input"]))
+        print(input_x)
 
         input_csv = [str(x) for x in input_x[0].tolist()]
         input_csv = ','.join(input_csv)

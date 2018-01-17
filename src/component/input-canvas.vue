@@ -37,7 +37,6 @@
  export default class CanvasComponent extends Vue implements CanvasMixin {
 
 	 private y_conv = null;
-	 private feature_csv: string = null;
 
 	 canvas;
 	 ctx: CanvasRenderingContext2D;
@@ -59,8 +58,9 @@
 		 this.estimate();
 	 }
 
+
 	 private estimate() {
-		 const inputs: number[] = this.getImageBuffer(28, 28);
+		 let inputs: number[] = this.getImageBuffer(28, 28);
 
 		 axios.post('/estimate', {input: inputs})
 			  .then((response) => {
@@ -77,13 +77,11 @@
 	 }
 
 	 generateFeature(): void {
-		 this.feature_csv = '';
-		 const inputs: number[] = this.getImageBuffer(28, 28);
+		 let inputs: number[] = this.getImageBuffer(28, 28);
 
 		 axios.post('/csv', {input: inputs})
 			  .then((response) => {
-				  this.feature_csv = response.data.feature;
-				  bus.$emit('feature', this.feature_csv);
+				  bus.$emit('feature', response.data.feature);
 				  this.initialize();
 			  })
 			  .catch((error) => {
